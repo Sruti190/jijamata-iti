@@ -34,8 +34,8 @@ export default function AdminDashboard() {
       setBusy(false);
     }
   };
-
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [course, status]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { load();  }, [course, status]);
 
   const filtered = useMemo(() => {
     const s = search.toLowerCase().trim();
