@@ -70,7 +70,11 @@ export default function AdminDashboard() {
   };
 
   const logout = () => { auth.clear(); nav("/admin/login"); };
-
+const clearAll = async () => {
+  if (!window.confirm("Delete ALL applications? This cannot be undone.")) return;
+  await client.delete("/admin/applications");
+  load();
+};
   return (
     <div className="container-x py-10" data-testid="admin-dashboard">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
@@ -80,6 +84,9 @@ export default function AdminDashboard() {
         </div>
         <div className="flex gap-3">
           <button onClick={downloadCsv} className="btn-ghost" data-testid="btn-csv"><i className="fa-solid fa-file-csv" /> Export CSV</button>
+          <button onClick={clearAll} className="btn-ghost text-red-600" >
+    <i className="fa-solid fa-trash" /> Clear All
+</button>
           <button onClick={logout} className="btn-primary" data-testid="btn-logout"><i className="fa-solid fa-right-from-bracket" /> Logout</button>
         </div>
       </div>

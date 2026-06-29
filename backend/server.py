@@ -237,7 +237,10 @@ async def export_csv(_: str = Depends(require_admin)):
         headers={"Content-Disposition": "attachment; filename=jijamata_applications.csv"},
     )
 
-
+@api.delete("/admin/applications")
+async def clear_applications(_: str = Depends(require_admin)):
+    result = await db.applications.delete_many({})
+    return {"ok": True, "deleted": result.deleted_count}
 app.include_router(api)
 app.add_middleware(
     CORSMiddleware,
