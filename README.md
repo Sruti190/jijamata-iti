@@ -1,1 +1,2 @@
-# Here are your Instructions
+# jijamata-iti
+Jijamata Private ITI College Website
