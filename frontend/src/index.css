@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #2a0d12;
+  --ink-2: #4a1620;
+  --brand: #7a1f2e;
+  --brand-2: #a23548;
+  --brand-tint: #fbeef0;
+  --gold: #d4a437;
+  --paper: #f7ede0;
+  --paper-2: #fbf5ec;
+  --line: #e7d8c8;
+}
+
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+html, body {
+  font-family: "Outfit", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper-2);
+}
+
+.font-serif { font-family: "Spectral", Georgia, serif; }
+.font-sans  { font-family: "Outfit", system-ui, sans-serif; }
+
+.hairline { border-color: var(--line); }
+
+.section-pad { padding-top: 5rem; padding-bottom: 5rem; }
+@media (min-width: 768px) { .section-pad { padding-top: 7rem; padding-bottom: 7rem; } }
+
+.container-x { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+@media (min-width: 768px) { .container-x { padding-left: 2rem; padding-right: 2rem; } }
+
+.btn-primary {
+  background: var(--brand);
+  color: white;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+}
+.btn-primary:hover { background: var(--ink-2); transform: translateY(-1px); }
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+}
+.btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
+
+.eyebrow {
+  font-family: "DM Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+}
+
+.card-academic {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-academic:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+  box-shadow: 0 18px 40px -24px rgba(122, 31, 46, 0.35);
+}
+
+.input-academic {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-academic:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px rgba(11, 61, 145, 0.08); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--brand-tint); color: var(--brand);
+  padding: 0.25rem 0.7rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+}
+
+.status-New { background: #fbeef0; color: #7a1f2e; }
+.status-Contacted { background: #fff4e0; color: #a76a00; }
+.status-Approved { background: #e2f6ea; color: #0f7a3c; }
+.status-Rejected { background: #fde8e8; color: #b22222; }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { animation: fade-up 0.6s ease both; }
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.18s; }
+.delay-3 { animation-delay: 0.28s; }
+
+::selection { background: var(--brand); color: white; }

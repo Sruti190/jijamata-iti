@@ -1,0 +1,31 @@
+{
+  "summary": "Backend smoke test of Jijamata ITI API: all 14 endpoint scenarios executed against public URL. All passed. Email is correctly MOCKED (logged only).",
+  "tested_scope": ["backend"],
+  "passed": [
+    "GET /api/health -> 200 {status:ok, service:'Jijamata ITI API', time}",
+    "POST /api/applications (valid) -> 200, applicationId matches JITI-XXXX-XXXX, status='New'",
+    "POST /api/applications missing fullName -> 422 (FastAPI/Pydantic auto-validation; not 400)",
+    "POST /api/applications with empty fullName -> 400 'Missing required fields'",
+    "POST /api/applications invalid course='XYZ' -> 400",
+    "POST /api/admin/login admin/admin123 -> 200 with JWT token (len 147)",
+    "POST /api/admin/login wrong pwd -> 401",
+    "GET /api/admin/applications no auth -> 401 'Missing token'",
+    "GET /api/admin/applications with Bearer token -> 200, includes created applicationId",
+    "GET /api/admin/applications?course=Electrician -> filtered correctly",
+    "GET /api/admin/applications?status=New -> filtered correctly",
+    "GET /api/admin/stats -> 200 with total, byStatus(4 statuses), byCourse(all 8 trades)",
+    "PATCH /api/admin/applications/{id} {status:'Contacted'} -> 200; list reflects new status",
+    "PATCH /api/admin/applications/{id} {status:'Foo'} -> 400",
+    "PATCH /api/admin/applications/JITI-ZZZZ-ZZZZ -> 404 'Application not found'",
+    "GET /api/admin/applications/csv with token -> 200 text/csv with Content-Disposition attachment and header+row",
+    "GET /api/admin/applications/csv no token -> 401"
+  ],
+  "failed": [],
+  "action_items": [
+    "Optional/minor: spec said missing-field returns 400; FastAPI returns 422 by default. Acceptable, but if strict 400 is required, add a custom RequestValidationError handler."
+  ],
+  "success_rate": {"backend": "100%", "frontend": "not tested"},
+  "retest_needed": false,
+  "full_testing_deferred": true,
+  "mocked_apis_observed": ["Email sending (smtplib) — confirmed mocked; backend log line '[EMAIL MOCKED]'"]
+}
